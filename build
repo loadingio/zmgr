@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "prepare..."
+rm -rf dist
+mkdir -p dist
+
+echo "building zmgr.ls -> zmgr.js ..."
+npx lsc -cp src/zmgr.ls > dist/zmgr.js
+echo "minify zmgr.js -> zmgr.min.js ..."
+npx uglifyjs dist/zmgr.js > dist/zmgr.min.js
