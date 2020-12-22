@@ -6,11 +6,19 @@
     this.opt = opt;
     this.stack = [];
     this.step = opt.step || 1;
+    if (opt.init != null) {
+      this.init = opt.init;
+    }
     return this;
   };
   main.prototype = import$(Object.create(Object.prototype), {
     add: function(v, s){
       s == null && (s = 0);
+      if (this.init != null) {
+        v = this.step > 0
+          ? Math.max(this.init, v)
+          : Math.min(this.init, v);
+      }
       if (!(this.value != null)) {
         this.value = v;
       }
