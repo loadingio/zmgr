@@ -17,5 +17,5 @@ main.prototype = Object.create(Object.prototype) <<< do
     if !~(i = @stack.indexOf v) => return
     @stack.splice i, 1
 
-if window? => window.stack = main
+if window? => window.zmgr = main
 if module? => module.exports = main
