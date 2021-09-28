@@ -5,7 +5,7 @@ rm -rf dist
 mkdir -p dist
 
 echo "building zmgr.ls -> index.js ..."
-./node_modules/.bin/lsc -cp src/zmgr.ls > dist/index.js
+./node_modules/.bin/lsc -cp --no-header src/zmgr.ls > dist/index.js
 echo "minify index.js -> index.min.js ..."
 ./node_modules/.bin/uglifyjs dist/index.js > dist/index.min.js
 
