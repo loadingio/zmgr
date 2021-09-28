@@ -6,7 +6,7 @@ zmgr = (opt={}) ->
   @
 
 zmgr.prototype = Object.create(Object.prototype) <<< do
-  add: (v,s = 0) ->
+  add: (v, s = 0) ->
     if @init? => v = if @step > 0 => Math.max(@init,v) else Math.min(@init,v)
     if !(@value?) => @value = v
     v = if @step > 0 => Math.max(@value,v) else Math.min(@value,v)
