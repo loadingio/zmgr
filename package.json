@@ -18,8 +18,8 @@
   },
   "scripts": {},
   "devDependencies": {
-    "stylus": "^0.54.5",
+    "stylus": "^0.55.0",
     "livescript": "^1.6.0",
-    "uglify-js": "=3.2.0"
+    "uglify-js": "^3.2.0"
   }
 }
