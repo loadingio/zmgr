@@ -1,11 +1,11 @@
-main = (opt={}) ->
+zmgr = (opt={}) ->
   @opt = opt
   @stack = []
   @step = opt.step or 1
   if opt.init? => @init = opt.init
   @
 
-main.prototype = Object.create(Object.prototype) <<< do
+zmgr.prototype = Object.create(Object.prototype) <<< do
   add: (v,s=0) ->
     if @init? => v = if @step > 0 => Math.max(@init,v) else Math.min(@init,v)
     if !(@value?) => @value = v
@@ -19,5 +19,5 @@ main.prototype = Object.create(Object.prototype) <<< do
     if !~(i = @stack.indexOf v) => return
     @stack.splice i, 1
 
-if window? => window.zmgr = main
-if module? => module.exports = main
+if module? => module.exports = zmgr
+else if window? => window.zmgr = zmgr

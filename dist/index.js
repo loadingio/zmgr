@@ -1,6 +1,6 @@
 (function(){
-  var main;
-  main = function(opt){
+  var zmgr;
+  zmgr = function(opt){
     opt == null && (opt = {});
     this.opt = opt;
     this.stack = [];
@@ -10,7 +10,7 @@
     }
     return this;
   };
-  main.prototype = import$(Object.create(Object.prototype), {
+  zmgr.prototype = import$(Object.create(Object.prototype), {
     add: function(v, s){
       s == null && (s = 0);
       if (this.init != null) {
@@ -39,11 +39,10 @@
       return this.stack.splice(i, 1);
     }
   });
-  if (typeof window != 'undefined' && window !== null) {
-    window.zmgr = main;
-  }
   if (typeof module != 'undefined' && module !== null) {
-    module.exports = main;
+    module.exports = zmgr;
+  } else if (typeof window != 'undefined' && window !== null) {
+    window.zmgr = zmgr;
   }
   function import$(obj, src){
     var own = {}.hasOwnProperty;
