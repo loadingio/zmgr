@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.0.0
+
+ - release with compact directory structure
+
+
 ## v1.0.1
 
  - add `main` and `browser` field
