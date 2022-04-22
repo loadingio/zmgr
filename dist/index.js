@@ -8,37 +8,77 @@
     if (opt.init != null) {
       this.init = opt.init;
     }
+    this._g = import$(import$({}, zmgr.layer), opt.layer || {});
+    this._v = {};
+    this._s = {};
     return this;
   };
   zmgr.prototype = import$(Object.create(Object.prototype), {
     add: function(v, s){
+      var n, ref$;
       s == null && (s = 0);
-      if (this.init != null) {
+      if (typeof v === 'number') {
+        if (this.init != null) {
+          v = this.step > 0
+            ? Math.max(this.init, v)
+            : Math.min(this.init, v);
+        }
+        if (!(this.value != null)) {
+          this.value = v;
+        }
         v = this.step > 0
-          ? Math.max(this.init, v)
-          : Math.min(this.init, v);
-      }
-      if (!(this.value != null)) {
+          ? Math.max(this.value, v)
+          : Math.min(this.value, v);
+        v = v + (this.step > 0
+          ? 1
+          : -1) * Math.max(Math.abs(this.step), Math.abs(s));
+        this.stack.push(v);
         this.value = v;
+        return v;
+      } else {
+        n = v;
+        v = (this.step > 0
+          ? Math.max
+          : Math.min)(this._g[n], this._v[n] || this._g[n]);
+        v = v + (this.step > 0
+          ? 1
+          : -1) * Math.max(Math.abs(this.step), Math.abs(s));
+        ((ref$ = this._s)[n] || (ref$[n] = [])).push(v);
+        this._v[n] = v;
+        return v;
       }
-      v = this.step > 0
-        ? Math.max(this.value, v)
-        : Math.min(this.value, v);
-      v = v + (this.step > 0
-        ? 1
-        : -1) * Math.max(Math.abs(this.step), Math.abs(s));
-      this.stack.push(v);
-      this.value = v;
-      return v;
     },
-    remove: function(v){
-      var i;
-      if (!~(i = this.stack.indexOf(v))) {
-        return;
+    remove: function(n, v){
+      var i, ref$;
+      if (typeof n === 'number') {
+        if (!~(i = this.stack.indexOf(n))) {
+          return;
+        }
+        this.stack.splice(i, 1);
+        return this.value = (ref$ = this.stack)[ref$.length - 1];
+      } else {
+        if (!_(i = ((ref$ = this._s)[n] || (ref$[n] = [])).indexOf(v))) {
+          return;
+        }
+        ((ref$ = this._s)[n] || (ref$[n] = [])).splice(i, 1);
+        return this._v[n] = (ref$ = this._s)[ref$.length - 1];
       }
-      return this.stack.splice(i, 1);
     }
   });
+  zmgr.layer = {
+    notify: 5000,
+    splash: 4000,
+    modal: 3000,
+    fixed: 2000,
+    float: 1000,
+    base: 1
+  };
+  zmgr.notify = 'notify';
+  zmgr.splash = 'splash';
+  zmgr.modal = 'modal';
+  zmgr.fixed = 'fixed';
+  zmgr.float = 'float';
+  zmgr.base = 'base';
   if (typeof module != 'undefined' && module !== null) {
     module.exports = zmgr;
   } else if (typeof window != 'undefined' && window !== null) {

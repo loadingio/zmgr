@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.1.0
+
+ - support layered manager in one object.
+
+
 ## v2.0.0
 
  - release with compact directory structure

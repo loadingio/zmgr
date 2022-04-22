@@ -4,8 +4,8 @@ echo "prepare..."
 rm -rf dist
 mkdir -p dist
 
-echo "building zmgr.ls -> index.js ..."
-./node_modules/.bin/lsc -cp --no-header src/zmgr.ls > dist/index.js
+echo "building index.ls -> index.js ..."
+./node_modules/.bin/lsc -cp --no-header src/index.ls > dist/index.js
 echo "minify index.js -> index.min.js ..."
 ./node_modules/.bin/uglifyjs dist/index.js > dist/index.min.js
 

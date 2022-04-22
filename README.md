@@ -27,13 +27,16 @@ include `dist/index.js` then:
      - if step < 0: min(init, added) will be used
  - `step`: amount of increase between `add` function calls. default 1 if omitted.
    - can be negative, indicating a decreased value.
+ - `layer`: object containing customized value for named layers. in this object:
+   - key as layer name.
+   - value as layer value. 
 
 
 ## API
 
  - `add(v,s)`: use a certain  `v`. Return assigned value to use.
    - params:
-     - `v`: expected z-index. 
+     - `v`: expected z-index or string for grouping. see `grouping` section below.
      - `s`: custom step. direction is ignored.
        - use `step` (in constructor option) if omitted.
  - `remove(v)`: remove a used value from zmgr.
@@ -55,6 +58,34 @@ We can thus use 2 `zmgr` for configuring them `z-index` accordingly:
       hint1: new ldcover zmgr: manager.hint
       hint2: new ldcover zmgr: manager.hint
 
+
+### Grouping
+
+Alternatively, you can use `string` as layer name when adding a value:
+
+    mgr = new zmgr({
+      group: {
+        "my new group": 100  # initial value for `my new group` layer is 100
+        "default": 10        # initial value for `default` layer is 10
+      }
+    );
+    mgr.add "my new group" # return 101
+    mgr.add "default" # return 11
+    mgr.add "my new group" # return 102
+
+
+zmgr is by default shipped with following layers (and their corresponding default values):
+
+ - `notify`: 5000
+ - `splash`: 4000
+ - `modal`: 3000
+ - `fixed`: 2000
+ - `float`: 1000
+ - `base`: 1
+
+instead of using these names as string directly, you can use predefined members such as `zmgr.notify`:
+
+    mgr.add(zmgr.notify);
 
 
 
