@@ -5,7 +5,7 @@ manage stackable values such as z-index.
 
 ## Install
 
-    npm install zmgr
+    npm install --save zmgr
 
 
 ## Usage
@@ -35,7 +35,7 @@ include `dist/index.js` then:
    - params:
      - `v`: expected z-index. 
      - `s`: custom step. direction is ignored.
-
+       - use `step` (in constructor option) if omitted.
  - `remove(v)`: remove a used value from zmgr.
 
 
