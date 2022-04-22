@@ -14,10 +14,24 @@
     return this;
   };
   zmgr.prototype = import$(Object.create(Object.prototype), {
+    scope: function(n, s){
+      var this$ = this;
+      return {
+        add: function(_n, _s){
+          return this$.add(_n != null ? _n : n, _s != null ? _s : s);
+        },
+        remove: function(_n, _v){
+          return this$.remove(_n != null ? _n : n, _v);
+        }
+      };
+    },
     add: function(v, s){
       var n, ref$;
       s == null && (s = 0);
-      if (typeof v === 'number') {
+      if (!(v != null) || typeof v === 'number') {
+        if (!(v != null)) {
+          v = this.init;
+        }
         if (this.init != null) {
           v = this.step > 0
             ? Math.max(this.init, v)

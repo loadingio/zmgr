@@ -15,3 +15,5 @@ console.log s.add(zmgr.notify)
 console.log s.add(zmgr.fixed)
 console.log s.add(zmgr.notify)
 console.log s.add(zmgr.fixed)
+z = s.scope \fixed
+console.log z.add!

@@ -9,8 +9,12 @@ zmgr = (opt={}) ->
   @
 
 zmgr.prototype = Object.create(Object.prototype) <<< do
+  scope: (n, s) ->
+    add: (_n,_s) ~> @add (if _n? => _n else n), (if _s? => _s else s)
+    remove: (_n, _v) ~> @remove (if _n? => _n else n), _v
   add: (v, s = 0) ->
-    if typeof(v) == \number =>
+    if !(v?) or typeof(v) == \number =>
+      if !(v?) => v = @init
       if @init? => v = if @step > 0 => Math.max(@init,v) else Math.min(@init,v)
       if !(@value?) => @value = v
       v = if @step > 0 => Math.max(@value,v) else Math.min(@value,v)

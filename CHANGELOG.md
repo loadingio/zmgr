@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.2.0
+
+ - support manager scoping
+
+
 ## v2.1.0
 
  - support layered manager in one object.

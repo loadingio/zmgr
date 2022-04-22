@@ -36,10 +36,15 @@ include `dist/index.js` then:
 
  - `add(v,s)`: use a certain  `v`. Return assigned value to use.
    - params:
-     - `v`: expected z-index or string for grouping. see `grouping` section below.
+     - `v`: expected z-index or string to indicate layer to use. see `Named Layers` section below.
+       - when `v` is a number, value is added to default layer.
      - `s`: custom step. direction is ignored.
        - use `step` (in constructor option) if omitted.
- - `remove(v)`: remove a used value from zmgr.
+ - `remove(n, v)`: remove a used value from layer n.
+   - when n is a number, value is removed from default layer.
+ - `scope(n)`: return a scoped interface to this object with `add` and `remove` methods.
+   - `add` / `remove` work the same as `add` / `remove` in this object, except they can be called without parameters.
+   - `n`: default layer name for this scope.
 
 
 ## Layered Values
@@ -59,7 +64,7 @@ We can thus use 2 `zmgr` for configuring them `z-index` accordingly:
       hint2: new ldcover zmgr: manager.hint
 
 
-### Grouping
+### Named Layers
 
 Alternatively, you can use `string` as layer name when adding a value:
 
@@ -72,6 +77,11 @@ Alternatively, you can use `string` as layer name when adding a value:
     mgr.add "my new group" # return 101
     mgr.add "default" # return 11
     mgr.add "my new group" # return 102
+
+To scope APIs to specific layer by default, use `scope`:
+
+    splash = mgr.scope('splash')
+    val = splash.add()  # return 4001
 
 
 zmgr is by default shipped with following layers (and their corresponding default values):
