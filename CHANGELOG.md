@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.2.1
+
+ - fix typo
+
+
 ## v2.2.0
 
  - support manager scoping

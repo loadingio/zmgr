@@ -5,7 +5,7 @@
   "description": "z-index manager",
   "browser": "dist/index.min.js",
   "main": "dist/index.min.js",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "files": [
     "dist/**/*"
   ],

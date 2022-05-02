@@ -38,7 +38,7 @@ zmgr.prototype = Object.create(Object.prototype) <<< do
       @stack.splice i, 1
       @value = @stack[* - 1]
     else
-      if !_(i = @_s[][n].indexOf v) => return
+      if !(i = @_s[][n].indexOf v) => return
       @_s[][n].splice i, 1
       @_v[n] = @_s[* - 1]
 

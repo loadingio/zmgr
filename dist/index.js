@@ -71,7 +71,7 @@
         this.stack.splice(i, 1);
         return this.value = (ref$ = this.stack)[ref$.length - 1];
       } else {
-        if (!_(i = ((ref$ = this._s)[n] || (ref$[n] = [])).indexOf(v))) {
+        if (!(i = ((ref$ = this._s)[n] || (ref$[n] = [])).indexOf(v))) {
           return;
         }
         ((ref$ = this._s)[n] || (ref$[n] = [])).splice(i, 1);
