@@ -29,9 +29,6 @@ zmgr.prototype = Object.create(Object.prototype) <<< do
       @_s[][n].push v
       @_v[n] = v
       return v
-
-
-
   remove: (n, v) ->
     if typeof(n) == \number =>
       if !~(i = @stack.indexOf n) => return
