@@ -1,5 +1,10 @@
 # Change Logs
 
+## v2.2.3
+
+ - fix typo
+
+
 ## v2.2.2
 
  - fix issue: scoped zmgr should guarantee the result value is scoped even if some out-of-bound custom values are given

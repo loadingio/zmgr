@@ -22,7 +22,7 @@
       return {
         add: function(_n, _s){
           var _nv;
-          if (!(n != null)) {
+          if (!(_n != null)) {
             _n = n;
           } else {
             _nv = typeof _n === 'number'

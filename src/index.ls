@@ -13,7 +13,7 @@ zmgr.prototype = Object.create(Object.prototype) <<< do
     nv = if typeof(n) == \number => n else @_g[n]
     add: (_n,_s) ~>
       # if _n is not provided, use n (the scoped value) directly
-      if !(n?) => _n = n
+      if !(_n?) => _n = n
       else
         # _n is provided: convert it to number first
         _nv = if typeof(_n) == \number => _n else @_g[_n]
