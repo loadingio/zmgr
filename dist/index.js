@@ -15,10 +15,24 @@
   };
   zmgr.prototype = import$(Object.create(Object.prototype), {
     scope: function(n, s){
-      var this$ = this;
+      var nv, this$ = this;
+      nv = typeof n === 'number'
+        ? n
+        : this._g[n];
       return {
         add: function(_n, _s){
-          return this$.add(_n != null ? _n : n, _s != null ? _s : s);
+          var _nv;
+          if (!(n != null)) {
+            _n = n;
+          } else {
+            _nv = typeof _n === 'number'
+              ? _n
+              : this$._g[_n];
+            _n = this$.step < 0
+              ? _nv < nv ? _n : n
+              : _nv > nv ? _n : n;
+          }
+          return this$.add(_n, _s != null ? _s : s);
         },
         remove: function(_n, _v){
           return this$.remove(_n != null ? _n : n, _v);

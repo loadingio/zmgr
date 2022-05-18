@@ -10,7 +10,18 @@ zmgr = (opt={}) ->
 
 zmgr.prototype = Object.create(Object.prototype) <<< do
   scope: (n, s) ->
-    add: (_n,_s) ~> @add (if _n? => _n else n), (if _s? => _s else s)
+    nv = if typeof(n) == \number => n else @_g[n]
+    add: (_n,_s) ~>
+      # if _n is not provided, use n (the scoped value) directly
+      if !(n?) => _n = n
+      else
+        # _n is provided: convert it to number first
+        _nv = if typeof(_n) == \number => _n else @_g[_n]
+        # decide either _n or n to use, based on direction
+        # always ensure the final value is scoped by n.
+        _n = if @step < 0 => (if _nv < nv => _n else n)
+        else (if _nv > nv => _n else n)
+      @add _n, (if _s? => _s else s)
     remove: (_n, _v) ~> @remove (if _n? => _n else n), _v
   add: (v, s = 0) ->
     if !(v?) or typeof(v) == \number =>
